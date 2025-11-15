@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="ust-kisim">
+        <div class="logo">
+            <a href="index.html" class="isim">Compass <br> Journeys</a>
+        </div>
+        <a class="navbar" href="index.html">Anasayfa</a>
+        <a class="navbar" href="turlar.html">Turlar</a>
+        <a class="navbar" href="rezervasyon.html">Rezarvasyon Yap</a>
+        <a class="navbar" href="hakkimizda.html">Hakkımızda</a>
+        <a class="navbar" href="iletisim.html">İletişim</a>
+    </div>
+
+
+    <div class="iletisim-kapsayici">
+
+        <div class="form-alani iletisim-form-alani">
+            <h2>Bize Bir Mesaj Gönderin</h2>
+            <form class="mesaj-formu">
+
+                <div class="form-grup">
+                    <label for="adSoyad">Adınız ve Soyadınız:</label>
+                    <input type="text" id="adSoyad" name="adSoyad" placeholder="Ad Soyad">
+                </div>
+
+                <div class="form-grup">
+                    <label for="email">E-posta Adresiniz:</label>
+                    <input type="email" id="email" name="email" placeholder="ornek@mail.com">
+                </div>
+
+                <div class="form-grup">
+                    <label for="konu">Konu:</label>
+                    <input type="text" id="konu" name="konu" placeholder="Mesajınızın konusu">
+                </div>
+
+                <div class="form-grup">
+                    <label for="mesaj">Mesajınız:</label>
+                    <textarea id="mesaj" name="mesaj" rows="6"
+                        placeholder="Detaylı mesajınızı buraya yazınız..."></textarea>
+                </div>
+
+                <a href="mesaj-onay.html" class="gonder-buton-link iletisim-gonder">Mesajı Gönder</a>
+            </form>
+        </div>
+
+        <div class="bilgi-harita-alani">
+
+            <div class="iletisim-detaylari">
+                <h3>İletişim Bilgilerimiz</h3>
+                <p><strong><i class="fas fa-map-marker-alt"></i> Adres:</strong> Kurgusal Plaza, Seyahat Cad. No: 42,
+                    İstanbul</p>
+                <p><strong><i class="fas fa-phone"></i> Telefon:</strong> +90 555 555 55 55</p>
+                <p><strong><i class="fas fa-envelope"></i> E-posta:</strong> info@compassjourneys.com</p>
+
+                <h3 class="calisma-saatleri"><i class="fas fa-clock"></i> Çalışma Saatleri</h3>
+                <p>Pazartesi - Cuma: 09:00 - 18:00</p>
+                <p>Cumartesi: 10:00 - 15:00</p>
+            </div>
+
+            <div class="harita-yer-tutucu">
+                <img src="harita-gorseli.png" alt="Acente Konumu Haritası" class="harita-gorseli">
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
