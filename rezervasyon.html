@@ -10,24 +10,12 @@
 </head>
 <body>
 
-    <div class="ust-kisim">
-        <div class="logo">
-            <a href="index.html" class="isim">Compass <br> Journeys</a>
-        </div>
-        <a class="navbar" href="index.html">Anasayfa</a>
-        <a class="navbar" href="turlar.html">Turlar</a>
-        <a class="navbar" href="rezervasyon.html">Rezarvasyon Yap</a>
-        <a class="navbar" href="hakkimizda.html">Hakkımızda</a>
-        <a class="navbar" href="iletisim.html">İletişim</a>
-    </div>
+    <div id="navbar-placeholder"></div>
     
-
     <div class="rezervasyon-kapsayici">
-    
     <div class="form-alani">
         <h2>Rezervasyonunuzu Tamamlayın</h2>
-        <form class="rezervasyon-formu">
-            
+        <form class="rezervasyon-formu"> 
             <div class="form-grup">
                 <label for="turSecimi">Seçmek İstediğiniz Tur:</label>
                 <select id="turSecimi" name="turSecimi">
@@ -36,30 +24,24 @@
                     <option value="dubai">Dubai Turu</option>
                     <option value="kis">Paris Turu</option>
                 </select>
-            </div>
-            
+            </div>         
             <div class="form-grup">
                 <label for="adSoyad">Adınız ve Soyadınız:</label>
                 <input type="text" id="adSoyad" name="adSoyad" placeholder="Ad Soyad">
-            </div>
-            
+            </div>          
             <div class="form-grup">
                 <label for="email">E-posta Adresiniz:</label>
                 <input type="email" id="email" name="email" placeholder="ornek@mail.com">
             </div>
-
             <div class="onay-grup">
                 <input type="checkbox" id="kvkkOnay" name="kvkkOnay">
                 <label for="kvkkOnay">Gizlilik politikasını okudum ve onaylıyorum.</label>
             </div>
-
             <button type="submit" class="gonder-buton">Rezervasyon Yap</button>
         </form>
-    </div>
-    
+    </div> 
     <div class="bilgi-ozet-alani">
         <h2>Rezervasyon Özeti</h2>
-        
         <div class="ozet-kutusu">
             <p>Seçilen Tur: <strong>Paris Turu</strong></p>
             <p>Kişi Sayısı: <strong>2</strong></p>
@@ -68,8 +50,7 @@
                 <span>Toplam Tahmini Fiyat:</span>
                 <span class="buyuk-fiyat">799,00 EUR / 39.270,85 TL</span>
             </div>
-        </div>
-        
+        </div>      
         <div class="iletisim-bilgileri">
             <h3>İletişim</h3>
             <p>Adres: Kurgusal Cad. No: 123, İstanbul</p>
@@ -79,5 +60,8 @@
     </div>
 </div>
 
+
+<script src="navbar.js"></script>
+<script src="rezervasyon.js"></script>
 </body>
 </html>

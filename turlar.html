@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,31 +8,21 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-     <div class="ust-kisim">
-        <div class="logo">
-            <a href="index.html" class="isim">Compass <br> Journeys</a>
-        </div>
-        <a class="navbar" href="index.html">Anasayfa</a>
-        <a class="navbar" href="turlar.html">Turlar</a>
-        <a class="navbar" href="rezervasyon.html">Rezarvasyon Yap</a>
-        <a class="navbar" href="hakkimizda.html">Hakkımızda</a>
-        <a class="navbar" href="iletisim.html">İletişim</a>
-    </div>
+<body>
+    <div id="navbar-placeholder"></div>
 
     <div class="filtre">
         <div class="arama-alan">
-            <i class="fas fa-search"></i> <input type="text" placeholder="Lütfen Ülke, Bölge, Şehir veya Otel girin">
+            <i class="fas fa-search"></i> <input type="text" id="turAramaInput" placeholder="Lütfen Ülke, Bölge, Şehir veya Otel girin">
         </div>
-
         <div class="tarih-alan">
             <input type="date" value="2025-01-02">
         </div>
-
         <div class="kisi-alan">
             <i class="fas fa-user-friends"></i>
-            <select>
+            <select id="kisiSecimi">
+                <option value="1">1 Kişi</option>
                 <option value="2">2 Kişi</option>
                 <option value="3">3 Kişi</option>
                 <option value="4">4 Kişi</option>
@@ -39,52 +30,66 @@
             </select>
             <i class="fas fa-chevron-down"></i>
         </div>
-
-        <button class="arama-buton">
+        <button class="arama-buton" id="araBtn">
             <i class="fas fa-search"></i> Ara
         </button>
+        <button class="temizle-buton" id="temizleBtn" style="margin-left: 10px; cursor: pointer;">
+    <i class="fas fa-sync-alt"></i> Temizle
+</button>
     </div>
-
+    <div class="firsat-sayaci">
+    <span>🔥 Sınırlı Süre Fırsatı! Rezervasyon için kalan süre: </span>
+    <strong id="geri-sayim">--:--:--</strong>
+</div>
     <div class="container">
-        <div class="tur1">
-            <img src="yunanistan.jpg" alt="Sıcak hava balonu turu" class="yunan-resmi">
-            <p class="aciklama-yazisi">
-                <strong style="font-size: 25px;">Yunanistan Turu</strong> <br>
-                -26-11-2025 <br>
-                -İstanbul Çıkışlı Tur <br>
-                -4 Gece 5 Gün - 4 Gece Konaklama <br>
-                -Vize Gerekli <br>
-                -Otobüslü Ulaşım <br>
-            </p>
-            <a href="yunanistan.html" class="fiyat-buton"><strong>269,00 EUR / 13.221,35 TL</strong></a>
-
-        </div>
-        <div class="tur2">
-            <img src="dubai.jpg" alt="Sıcak hava balonu turu" class="dubai-resmi">
-            <p class="aciklama-yazisi">
-                <strong style="font-size: 25px;">Dubai Turu</strong> <br>
-                -12-12-2025 <br>
-                -İstanbul Çıkışlı Tur <br>
-                -4 Gece 5 Gün - 4 Gece Konaklama <br>
-                -Vize Gerekli <br>
-                -Uçaklı Ulaşım <br>
-            </p>
-            <a href="dubai.html" class="fiyat-buton"><strong>429,00 EUR / 21.085,35 TL</strong></a>
-        </div>
-        <div class="tur3">
-
-            <img src="paris.jpg" alt="Sıcak hava balonu turu" class="paris-resmi">
-            <p class="aciklama-yazisi">
-                <strong style="font-size: 25px;">Paris Turu</strong> <br>
-                -09-11-2025 <br>
-                -İstanbul Çıkışlı Tur <br>
-                -5 Gece 6 Gün - 5 Gece Konaklama <br>
-                -Vize Gerekli <br>
-                -Uçaklı Ulaşım <br>
-            </p>
-            <a href="paris.html" class="fiyat-buton"><strong>799,00 EUR / 39.270,85 TL</strong></a>
-        </div>
+    <div class="tur1" id="kart-yunanistan" data-isim="Yunanistan Turu" data-fiyat="269">
+        <img src="yunanistan.jpg" alt="Sıcak hava balonu turu" class="yunan-resmi">
+        <p class="aciklama-yazisi">
+            <strong style="font-size: 25px;">Yunanistan Turu</strong> <br>
+            -26-11-2025 <br>
+            -İstanbul Çıkışlı Tur <br>
+            -4 Gece 5 Gün - 4 Gece Konaklama <br>
+            -Vize Gerekli <br>
+            -Otobüslü Ulaşım <br>
+        </p>
+        <a href="rezervasyon.html" onclick="rezervasyonKaydet('yunanistan', 269)" class="fiyat-buton">
+            <strong><span class="anlik-fiyat">269,00</span> EUR / <span class="anlik-fiyat-tl">13.221,35</span> TL</strong>
+        </a>
     </div>
-    
+
+    <div class="tur2" id="kart-dubai" data-isim="Dubai Turu" data-fiyat="429">
+        <img src="dubai.jpg" alt="Sıcak hava balonu turu" class="dubai-resmi">
+        <p class="aciklama-yazisi">
+            <strong style="font-size: 25px;">Dubai Turu</strong> <br>
+            -12-12-2025 <br>
+            -İstanbul Çıkışlı Tur <br>
+            -4 Gece 5 Gün - 4 Gece Konaklama <br>
+            -Vize Gerekli <br>
+            -Uçaklı Ulaşım <br>
+        </p>
+        <a href="rezervasyon.html" onclick="rezervasyonKaydet('dubai', 429)" class="fiyat-buton">
+            <strong><span class="anlik-fiyat">429,00</span> EUR / <span class="anlik-fiyat-tl">21.085,35</span> TL</strong>
+        </a>
+    </div>
+
+    <div class="tur3" id="kart-paris" data-isim="Paris Turu" data-fiyat="799">
+        <img src="paris.jpg" alt="Sıcak hava balonu turu" class="paris-resmi">
+        <p class="aciklama-yazisi">
+            <strong style="font-size: 25px;">Paris Turu</strong> <br>
+            -09-11-2025 <br>
+            -İstanbul Çıkışlı Tur <br>
+            -5 Gece 6 Gün - 5 Gece Konaklama <br>
+            -Vize Gerekli <br>
+            -Uçaklı Ulaşım <br>
+        </p>
+        <a href="rezervasyon.html" onclick="rezervasyonKaydet('paris', 799)" class="fiyat-buton">
+            <strong><span class="anlik-fiyat">799,00</span> EUR / <span class="anlik-fiyat-tl">39.270,85</span> TL</strong>
+        </a>
+    </div>
+</div>
+
+
+    <script src="navbar.js"></script>
+    <script src="turlar.js"></script>
 </body>
 </html>

@@ -1,7 +1,16 @@
-body{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Genişliğe padding ve border'ı dahil eder */
+}
+
+body {
+    overflow-x: hidden; /* Yatay kaydırmayı tamamen engeller */
+    width: 100%;
     background-color: #E1F1F6;
     margin: 0px;
 }
+
 
 /*------------------------------------------------*/
 /*İNDEX*/
@@ -15,6 +24,8 @@ body{
     justify-content: space-between; /* İsimi sola, linkleri sağa atar */
     padding: 0 20px;
     margin: 0px;
+    
+    
 }
 
 .isim{
@@ -25,6 +36,7 @@ body{
     text-decoration: none;
     text-align: center;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .navbar{
@@ -40,6 +52,7 @@ body{
     float: right;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
     text-decoration: none;
+    flex-wrap: wrap;
 }
 
 .navbar:hover{
@@ -47,58 +60,231 @@ body{
     color: #add8e6;
 }
 
+.firsat-sayaci {
+    background-color: #ff4d4d; 
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin: 15px auto;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 1200px;
+    font-family: sans-serif;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#geri-sayim {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+/* Aktif sayfa bağlantısının rengi */
+.navbar.active {
+    background-color: #003366; 
+    color: white !important;
+    font-weight: bold;
+    
+}
+
+/* Karanlık Tema Renkleri */
+body.dark-mode .navbar.active {
+    background-color: #add8e6;
+    color: #000 !important;
+}
+
+
+body.dark-mode .firsat-sayaci {
+    background-color: #b30000; 
+}
+
+
+body.dark-mode {
+    background-color: #004e9c; 
+    color: #ffffff;
+}
+
+body.dark-mode .ust-kisim {
+    background-color: #073564;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode .isim {
+    background-color: #073564;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode .navbar{
+    background-color: #003366;
+    color: #FFFFFF;
+}
+
+body.dark-mode .filtre{
+    background-color: #0562bf;
+    color: #FFFFFF;
+}
+body.dark-mode .arama-buton{
+    background-color: #6eaff0;
+    color: #06487a;
+}
+
+body.dark-mode .temizle-buton{
+    background-color: #6eaff0;
+    color: #06487a;
+}
+body.dark-mode .fiyat-buton{
+    background-color: #4d6cde;
+    color: #cd0d0d;
+}
+body.dark-mode .gonder-buton-link{
+    background-color: #4d6cde;
+    color: #fff6f6;
+}
+
+
+body.dark-mode .container, 
+body.dark-mode .rezervasyon-kapsayici,
+body.dark-mode .form-alani {
+    background-color: #003366;
+    color: white;
+}
+
+body.dark-mode .tur1, 
+body.dark-mode .tur2, 
+body.dark-mode .tur3 {
+    background-color: #1d2d85; 
+}
+
+body.dark-mode .aciklama-yazisi {
+    color: #e0e0e0;
+}
+
+body.dark-mode .kultur-baslik-alani h2 {
+    
+    color: #daefff;
+}
+body.dark-mode .kultur-baslik-alani p {
+    
+    color: #daefff;
+}
+body.dark-mode .rehber-baslik-alani h2 {
+    
+    color: #daefff;
+}
+body.dark-mode .form-grup label {
+    
+    color: #daefff;
+}
+body.dark-mode .bilgi-ozet-alani {
+    background-color: #003366;
+    color: #daefff;
+}
+body.dark-mode .rezervasyon-kapsayici {
+    
+    background-color: #004e9c;
+}
+body.dark-mode .hakkimizda-giris h2 {
+    
+    color: #daefff ;
+}
+body.dark-mode .deger-karti p {
+    
+    color: #004e9c ;
+}
+body.dark-mode .avantaj-karti p {
+    
+    color: #f44444 ;
+}
+
+
 .tanitim{
     width: 90%;
     height: 150px;
 
     margin: auto;
     margin-top: 10px;
+    margin-bottom: -10px;
 }
 
 .gif-stilim{
     width: 100%;
 }
 
-.filtre{
-    width: 90%;
-    height: 80px;
-    background-color: #2a639b;
-    margin: auto;
+.filtre {
+    border: none;
+    margin:15px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 8px;
+    flex-wrap: nowrap; /* Kesinlikle alt satıra geçmesini engeller */
+    gap: 8px; /* Elemanlar arası boşluğu biraz daralttık */
+    padding: 15px;
+    background-color: #2c5d8f;
     border-radius: 8px;
+    align-items: center;
+    overflow-x: auto; /* Çok küçük ekranlarda taşma olursa kaydırma çubuğu çıkarır */
 }
 
 .arama-alan, .tarih-alan, .kisi-alan {
-    padding: 10px;
+    flex: 2; /* Büyüme: 1, Küçülme: 1, Temel Genişlik: 200px */
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 5px;
+    padding: 5px ;
+    height: 40px;
+    min-width: 120px;
+    border: none;
 }
 
-
-.arama-alan input, .tarih-alan input, .kisi-alan select {
-    border: none; 
-    padding: 5px 10px;
-    font-size: 16px;
-    width: 300px; 
-    height: 30px;
-    margin-left: 20px;
+.filtre input, .filtre select {
+    display: flex;
+    flex-wrap: wrap; /* Sığmayınca alt satıra geçmesi için kritik */
+    gap: 10px; 
+    padding: 10px;
+    background-color: #fff;
     border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Sabit yükseklik varsa iptal eder */
+    width: 90%; /* Sayfa genişliğine göre ayarla */
+    margin: 20px auto;
+    border: none;
 }
 
 .arama-buton {
-    background-color: #17659a; 
+    min-width: 80px;
+    flex: 1 1 100px;
+    height: 45px;
+    cursor: pointer;
+    background-color: #1a3a5a; /* Biraz daha koyu bir buton */
     color: white;
     border: none;
-    padding: 15px 25px;
-    border-radius:8px; 
-    cursor: pointer;
+    border-radius: 5px;
     font-size: 16px;
-    font-weight: bold;
-    margin-left: auto; 
-    margin-right: 20px;
-    width: 200px;
 }
+.arama-alan input, .tarih-alan input, .kisi-alan select {
+    width: 100%; /* İçindeki kutuyu tam doldursun */
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 30px;
+    outline: none;
+}
+
+
+.temizle-buton {
+    min-width: 80px;
+    padding: 10px 20px;
+    background-color: #1a3a5a; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.temizle-buton:hover {
+    background-color: #5a6268;
+}
+
 
 .kultur-turlari-bolumu {
     width: 90%;
@@ -305,12 +491,11 @@ body{
 
 /*------------------------------------------------*/
 /*TURLAR*/
-
 .container{
     width: 90%;
     height:auto;
     margin: auto;
-    background-color:#f7f7f7;
+    background-color:#bdd5ff;
     margin-top: 10px;
     display: flex;
     border-radius: 8px;
@@ -318,31 +503,25 @@ body{
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Hafif gölge */
 
 }
-
 .tur1{
     width: 25%;
     height: 460px;
-    background-color: #add8e6;
+    background-color: #e2dff9;
     margin-right: auto;
     margin-left: auto;
     margin-top: 50px;
     margin-bottom: 50px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Hafif gölge */
-
-
 }
-
 .yunan-resmi{
     width: 100%;
     border-radius: 8px;
-
 }
-
 .tur2{
     width: 25%;
     height: 460px;
-    background-color: #add8e6;
+    background-color: #e2dff9;
     margin-right: auto;
     margin-left: auto;
     margin-top: 50px;
@@ -350,16 +529,14 @@ body{
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Hafif gölge */
 }
-
 .dubai-resmi{
     width: 100%;
     border-radius: 8px;
 }
-
 .tur3{
     width: 25%;
     height: 460px;
-    background-color: #add8e6;
+    background-color: #e2dff9;
     margin-right: auto;
     margin-left: auto;
     margin-top: 50px;
@@ -371,16 +548,12 @@ body{
     width: 100%;
     border-radius: 8px;
 }
-
 .fiyat-buton{
     width: 90%;
     height: 40px;
-    
     display: flex; 
     justify-content: center; 
     align-items: center;   
-    
-    
     margin: 10px 0 8px 15px; 
     font-size: 20px;
     color: #B22222;
@@ -389,13 +562,11 @@ body{
     background-color: #77a9ca;
     text-decoration: none;
 }
-
 .aciklama-yazisi{
     padding: 5px;
     font-size: 18px;
     color: #003366;
 }
-
 .fiyat-buton:hover{
     background-color: #B22222;
     color: #003366;
@@ -574,7 +745,6 @@ body{
 
 /* ================================================= */
 /*REZERVASYON*/
-
 .rezervasyon-kapsayici {
     width: 90%;
     max-width: 1100px;
@@ -583,36 +753,29 @@ body{
     display: flex; /* Flexbox ile iki sütunu yan yana getir */
     gap: 40px; /* Sütunlar arası boşluk */
 }
-
 .form-alani, .bilgi-ozet-alani {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     background-color: white;
 }
-
 .form-alani {
     flex: 2; /* Form alanı daha geniş olsun (Örn: %60) */
 }
-
 .bilgi-ozet-alani {
     flex: 1; /* Bilgi alanı daha dar olsun (Örn: %30) */
     background-color: #E1F1F6; 
     color: #003366;
 }
-
-
 .form-grup {
     margin-bottom: 20px;
 }
-
 .form-grup label {
     display: block;
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
 }
-
 .form-grup input, .form-grup select {
     width: 100%;
     padding: 12px;
@@ -622,12 +785,10 @@ body{
     box-sizing: border-box; /* Padding'in genişliği artırmasını engeller */
     transition: border-color 0.3s;
 }
-
 .form-grup input:focus, .form-grup select:focus {
     border-color: #FFC300; 
     outline: none;
 }
-
 .gonder-buton {
     background-color: #DC3545; 
     color: white;
@@ -639,30 +800,25 @@ body{
     width: 100%; /* Tüm alanı kapla */
     margin-top: 10px;
 }
-
 .ozet-kutusu {
     padding-bottom: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid #ADD8E6;
 }
-
 .ozet-kutusu p {
     font-size: 1em;
     margin-bottom: 10px;
 }
-
 .fiyat-gosterim {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .buyuk-fiyat {
     font-size: 1.4em;
     font-weight: bold;
     color: #DC3545; 
 }
-
 
 /* ================================================= */
 /* İLETİŞİM */
