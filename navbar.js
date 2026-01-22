@@ -1,18 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
+  
   fetch("navbar.html")
     .then((response) => response.text())
     .then((data) => {
       document.getElementById("navbar-placeholder").innerHTML = data;
 
+      
       const currentPath = window.location.pathname;
       const navLinks = document.querySelectorAll(".navbar");
 
       navLinks.forEach((link) => {
-        if (currentPath.includes(link.getAttribute("href"))) {
+        const linkHref = link.getAttribute("href");
+        
+        
+        link.classList.remove("active");
+
+        
+        if ((currentPath === "/" || currentPath.endsWith("index.html")) && (linkHref === "index.html" || linkHref === "/")) {
+          link.classList.add("active");
+        } 
+        else if (linkHref !== "/" && linkHref !== "index.html" && currentPath.includes(linkHref)) {
           link.classList.add("active");
         }
       });
 
+      
       const darkModeBtn = document.getElementById("dark-mode-toggle");
       const body = document.body;
 
@@ -35,4 +47,92 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })
     .catch((error) => console.error("Navbar veya Dark Mode hatası:", error));
+
+  
+  const araBtn = document.getElementById('araBtn');
+  const temizleBtn = document.getElementById('temizleBtn');
+  const aramaInput = document.getElementById('turAramaInput');
+  const kisiSecimi = document.getElementById('kisiSecimi');
+  const turKartlari = document.querySelectorAll('.tur1, .tur2, .tur3');
+  const EURO_KURU = 49.15;
+
+  function filtreleVeHesapla() {
+    if (!aramaInput) return;
+    const arananKelime = aramaInput.value.toLowerCase();
+    const kisiSayisi = parseInt(kisiSecimi.value);
+
+    turKartlari.forEach(kart => {
+      const turIsmi = kart.getAttribute('data-isim').toLowerCase();
+      if (turIsmi.includes(arananKelime)) {
+        kart.style.display = "block";
+        const birimFiyat = parseFloat(kart.getAttribute('data-fiyat'));
+        const yeniFiyatEur = birimFiyat * kisiSayisi;
+        const yeniFiyatTl = yeniFiyatEur * EURO_KURU;
+
+        const eurAlani = kart.querySelector('.anlik-fiyat');
+        const tlAlani = kart.querySelector('.anlik-fiyat-tl');
+        if (eurAlani) eurAlani.innerText = yeniFiyatEur.toLocaleString('tr-TR') + ",00";
+        if (tlAlani) tlAlani.innerText = yeniFiyatTl.toLocaleString('tr-TR', { maximumFractionDigits: 2 });
+      } else {
+        kart.style.display = "none";
+      }
+    });
+  }
+
+  if (araBtn) araBtn.addEventListener('click', (e) => { e.preventDefault(); filtreleVeHesapla(); });
+  
+  if (temizleBtn) {
+    temizleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      aramaInput.value = "";
+      kisiSecimi.value = "2";
+      turKartlari.forEach(kart => {
+        kart.style.display = "block";
+        
+      });
+      filtreleVeHesapla();
+    });
+  }
+
+  
+  let kaydedilmisBitis = localStorage.getItem('sayacBitisZamani');
+  let bitisZamani;
+
+  if (kaydedilmisBitis) {
+    bitisZamani = parseInt(kaydedilmisBitis);
+  } else {
+    bitisZamani = Date.now() + (12 * 60 * 60 * 1000); // 12 Saat
+    localStorage.setItem('sayacBitisZamani', bitisZamani);
+  }
+
+  function sayaciGuncelle() {
+    const sayacElementi = document.getElementById("geri-sayim");
+    if (!sayacElementi) return;
+
+    const simdi = Date.now();
+    const fark = bitisZamani - simdi;
+
+    if (fark <= 0) {
+      sayacElementi.innerHTML = "Süre Doldu!";
+      return;
+    }
+
+    const saat = Math.floor((fark / (1000 * 60 * 60)) % 24);
+    const dakika = Math.floor((fark / (1000 * 60)) % 60);
+    const saniye = Math.floor((fark / 1000) % 60);
+
+    sayacElementi.innerHTML = `${saat.toString().padStart(2, '0')}:${dakika.toString().padStart(2, '0')}:${saniye.toString().padStart(2, '0')}`;
+  }
+
+  setInterval(sayaciGuncelle, 1000);
+  sayaciGuncelle();
 });
+
+
+function rezervasyonKaydet(turId, fiyat) {
+  const kisiInput = document.getElementById('kisiSecimi');
+  const kisi = kisiInput ? kisiInput.value : 2;
+  localStorage.setItem('secilenTur', turId);
+  localStorage.setItem('birimFiyat', fiyat);
+  localStorage.setItem('kisiSayisi', kisi);
+}
