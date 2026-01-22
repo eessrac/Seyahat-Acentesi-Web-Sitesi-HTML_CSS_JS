@@ -5,26 +5,27 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((data) => {
       document.getElementById("navbar-placeholder").innerHTML = data;
 
-      
+     
       const currentPath = window.location.pathname;
       const navLinks = document.querySelectorAll(".navbar");
 
       navLinks.forEach((link) => {
         const linkHref = link.getAttribute("href");
-        
-        
         link.classList.remove("active");
 
-        
-        if ((currentPath === "/" || currentPath.endsWith("index.html")) && (linkHref === "index.html" || linkHref === "/")) {
-          link.classList.add("active");
+       
+        if (linkHref === "/" || linkHref === "index.html") {
+          if (currentPath === "/" || currentPath.endsWith("index.html") || currentPath === "") {
+            link.classList.add("active");
+          }
         } 
-        else if (linkHref !== "/" && linkHref !== "index.html" && currentPath.includes(linkHref)) {
+      
+        else if (linkHref && currentPath.includes(linkHref)) {
           link.classList.add("active");
         }
       });
 
-      
+  
       const darkModeBtn = document.getElementById("dark-mode-toggle");
       const body = document.body;
 
@@ -48,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Navbar veya Dark Mode hatası:", error));
 
-  
+
   const araBtn = document.getElementById('araBtn');
   const temizleBtn = document.getElementById('temizleBtn');
   const aramaInput = document.getElementById('turAramaInput');
@@ -59,10 +60,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function filtreleVeHesapla() {
     if (!aramaInput) return;
     const arananKelime = aramaInput.value.toLowerCase();
-    const kisiSayisi = parseInt(kisiSecimi.value);
+    const kisiSayisi = parseInt(kisiSecimi.value) || 2;
 
     turKartlari.forEach(kart => {
-      const turIsmi = kart.getAttribute('data-isim').toLowerCase();
+      const turIsmi = (kart.getAttribute('data-isim') || "").toLowerCase();
       if (turIsmi.includes(arananKelime)) {
         kart.style.display = "block";
         const birimFiyat = parseFloat(kart.getAttribute('data-fiyat'));
@@ -84,12 +85,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (temizleBtn) {
     temizleBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      aramaInput.value = "";
-      kisiSecimi.value = "2";
-      turKartlari.forEach(kart => {
-        kart.style.display = "block";
-        
-      });
+      if (aramaInput) aramaInput.value = "";
+      if (kisiSecimi) kisiSecimi.value = "2";
+      turKartlari.forEach(kart => { kart.style.display = "block"; });
       filtreleVeHesapla();
     });
   }
@@ -101,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (kaydedilmisBitis) {
     bitisZamani = parseInt(kaydedilmisBitis);
   } else {
-    bitisZamani = Date.now() + (12 * 60 * 60 * 1000); // 12 Saat
+    bitisZamani = Date.now() + (12 * 60 * 60 * 1000); 
     localStorage.setItem('sayacBitisZamani', bitisZamani);
   }
 
